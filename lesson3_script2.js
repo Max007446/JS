@@ -1,22 +1,14 @@
-function Nature( x ){
-    if(x < 1 ){
-        return false;
+var basket = [["мяч", "кожанный", 2, 200]
+         , ["карандаш", "простой", 10, 10]
+         , ["ручка", "гелевая", 5, 50]
+         , ["блокнот", "а2", 3, 150]];
+let sumBasket = ountBasketPrice(basket);
+console.log("сумма корзины " + sumBasket);
+
+function ountBasketPrice(a) {
+    let sum = 0;
+    for (var i = 0; i < a.length; i++) {
+        sum = parseInt(a[i][2]) * parseInt(a[i][3]) + sum;
     }
-    var i = 2;
-    var result = true;
-    while (i*i<=x) {        
-        if(x%i == 0){
-            result = false;
-        }
-        i++;
-    }
-    return result;
-}
-var n = 0;
-while (n < 100){
-    ++n;
-    if (Nature(n)) {
-        console.log(n);
-        
-    }
+    return sum;
 }
