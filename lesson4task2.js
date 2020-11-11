@@ -54,53 +54,49 @@ const player = {
     }
 , };
 const game = {
-    settings, player
-    , run() {
-            this.player.init(this.settings.startPositionX, this.settings.startPositionY);
-            while (true) {
-                this.render();
-                const direction = this.getDirection();
-                if (direction === -1) {
-                    alert('До свидания.');
-                    return;
-                }
-                const nextPoint = this.player.getNextPosition(direction);
-                if (this.canPlayerMakeStep(nextPoint)) {
-                    this.player.move(nextPoint);
-                }
+    settings, player, run() {
+        this.player.init(this.settings.startPositionX, this.settings.startPositionY);
+        while (true) {
+            this.render();
+            const direction = this.getDirection();
+            if (direction === -1) {
+                alert('До свидания.');
+                return;
+            }
+            const nextPoint = this.player.getNextPosition(direction);
+            if (this.canPlayerMakeStep(nextPoint)) {
+                this.player.move(nextPoint);
             }
         }
-        , render() {
-            let map = "";
-            for (let row = 0; row < this.settings.rowsCount; row++) {
-                for (let col = 0; col < this.settings.colsCount; col++) {
-                    if (this.player.y === row && this.player.x === col) {
-                        map += 'o ';
-                    }
-                    else {
-                        map += 'x ';
-                    }
+    }, render() {
+        let map = "";
+        for (let row = 0; row < this.settings.rowsCount; row++) {
+            for (let col = 0; col < this.settings.colsCount; col++) {
+                if (this.player.y === row && this.player.x === col) {
+                    map += 'o ';
                 }
-                map += '\n';
-            }
-            console.clear();
-            console.log(map);
-        }
-        , getDirection() {
-            // Доступные значения ввода.
-            const availableDirections = [-1, 1, 2, 3, 4, 6, 7, 8, 9];
-            while (true) {
-                // Получаем от пользователя направление.
-                let direction = parseInt(prompt('Введите число, куда вы хотите переместиться, -1 для выхода.'));
-                if (!availableDirections.includes(direction)) {
-                    alert(`Для перемещения необходимо ввести одно из чисел: ${availableDirections.join(', ')}.`);
-                    continue;
+                else {
+                    map += 'x ';
                 }
-                return direction;
             }
+            map += '\n';
         }
-        , canPlayerMakeStep(nextPoint) {
-            return nextPoint.x >= 0 && nextPoint.x < this.settings.colsCount && nextPoint.y >= 0 && nextPoint.y < this.settings.rowsCount;
+        console.clear();
+        console.log(map);
+    }, getDirection() {
+        // Доступные значения ввода.
+        const availableDirections = [-1, 1, 2, 3, 4, 6, 7, 8, 9];
+        while (true) {
+            // Получаем от пользователя направление.
+            let direction = parseInt(prompt('Введите число, куда вы хотите переместиться, -1 для выхода.'));
+            if (!availableDirections.includes(direction)) {
+                alert(`Для перемещения необходимо ввести одно из чисел: ${availableDirections.join(', ')}.`);
+                continue;
+            }
+            return direction;
         }
+    }, canPlayerMakeStep(nextPoint) {
+        return nextPoint.x >= 0 && nextPoint.x < this.settings.colsCount && nextPoint.y >= 0 && nextPoint.y < this.settings.rowsCount;
+    }
 , };
 game.run();
