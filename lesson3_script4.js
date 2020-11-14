@@ -1,5 +1,7 @@
-arr = [];
-for (var i = 0; i < 20; i++) {
-    arr.push("x");
-    console.log(arr);
+let arr = [];
+let Str = "x";
+console.log(Str);
+for (var i = 0; i < 19; i++) {
+    Str = Str + "x";
+    console.log(Str);
 }
