@@ -40,7 +40,7 @@ const basket = {
     init() {
         this.cartCell = document.querySelector('.cart');
         this.cartClearButton = document.querySelector('.clear-btn');
-//        this.cartClearButton.addEventListener('click', this.clearCart.bind(this));
+        this.cartClearButton.addEventListener('click', this.clearCart.bind(this));
         this.render();
     },
     render() {
